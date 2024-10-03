@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Card Name Translator",
+  "version": "1.0",
+  "description": "Translate card names from English to Japanese using Scryfall API.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://api.scryfall.com/",
+    "https://www.17lands.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.17lands.com/card_data*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "type": "module"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "translations.json"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
